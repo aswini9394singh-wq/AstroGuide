@@ -181,3 +181,5 @@ A second interface built with Streamlit. It imports the same signs, horoscope an
 | Daily Horoscope | Pick a sign; tabs for Love, Career, Health, Finance, General |
 | Compatibility | Two signs: score, progress bar, strengths, challenges, plus a bar chart of the first sign against all 12 |
 | Contact Messages | Messages saved by the Flask contact form, with search and CSV download |
+#   A s t r o G u i d e  
+ 
