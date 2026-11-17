@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ sign.name }} · AstroGuide{% endblock %}
+{% block content %}
+<div class="card-astro text-center">
+  <div class="symbol big">{{ sign.symbol }}</div><h1>{{ sign.name }}</h1><p>{{ sign.dates }}</p>
+  <div class="row text-start mt-4 g-3">
+    <div class="col-md-6"><strong>Element:</strong> {{ sign.element }}</div>
+    <div class="col-md-6"><strong>Ruling planet:</strong> {{ sign.planet }}</div>
+    <div class="col-12"><strong>Personality:</strong> {{ sign.traits }}</div>
+    <div class="col-md-6"><strong>Strengths:</strong> {{ sign.strengths }}</div>
+    <div class="col-md-6"><strong>Weaknesses:</strong> {{ sign.weaknesses }}</div>
+  </div>
+  <div class="mt-4"><a class="btn btn-gold" href="{{ url_for('horoscope', sign=sign.slug) }}">Today's horoscope</a>
+  <a class="btn btn-outline-light" href="{{ url_for('zodiac') }}">All signs</a></div>
+</div>
+{% endblock %}

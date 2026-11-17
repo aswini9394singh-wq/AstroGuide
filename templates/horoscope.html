@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Daily Horoscope · AstroGuide{% endblock %}
+{% block content %}
+<h1 class="section-title">Daily Horoscope</h1>
+<p class="text-center">{{ today.strftime('%A, %d %B %Y') }}</p>
+<div class="row g-3 justify-content-center mb-4">
+  {% for s in signs %}
+  <div class="col-4 col-md-2"><a class="sign-card small-card {{ 'selected' if sign and sign.slug == s.slug }}" href="{{ url_for('horoscope', sign=s.slug) }}">
+    <span class="symbol">{{ s.symbol }}</span><small>{{ s.name }}</small></a></div>{% endfor %}
+</div>
+{% if sign %}
+<div class="card-astro">
+  <h2>{{ sign.symbol }} {{ sign.name }}</h2>
+  {% for cat, text in content.items() %}<p><strong>{{ cat }}:</strong> {{ text }}</p>{% endfor %}
+</div>
+{% else %}<p class="text-center">Select your sign above to read today's horoscope.</p>{% endif %}
+<p class="note">General entertainment content, not verified predictions.</p>
+{% endblock %}

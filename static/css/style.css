@@ -1,0 +1,30 @@
+/* AstroGuide theme: dark purple, lavender, cream, gold */
+:root { --purple:#1f1235; --purple2:#33204f; --lavender:#c9b8ee; --cream:#fbf5e6; --gold:#d4a843; }
+body { background: radial-gradient(circle at top, var(--purple2), var(--purple) 60%) fixed; color: var(--cream); font-family: 'Nunito', sans-serif; min-height: 100vh; display:flex; flex-direction:column; }
+main { flex:1; }
+h1,h2,h3,.navbar-brand,.score { font-family: 'Cormorant Garamond', serif; font-weight:700; }
+a { color: var(--gold); }
+.navbar-astro { background: rgba(20,10,35,.85); }
+.navbar-brand { color: var(--gold)!important; font-size:1.7rem; }
+.nav-link { color: var(--lavender)!important; }
+.nav-link:hover,.nav-link.active { color: var(--gold)!important; }
+.hero { padding: 3rem 1rem 4rem; }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 4.5rem); color: var(--gold); }
+.hero .lead { max-width: 640px; margin: 1rem auto 2rem; color: var(--lavender); }
+.hero-symbols { font-size: 1.6rem; letter-spacing: .5rem; color: var(--lavender); opacity:.7; }
+.section-title { text-align:center; margin: 3rem 0 1.5rem; color: var(--gold); }
+.btn-gold { background: var(--gold); color: var(--purple); font-weight:600; border:0; }
+.btn-gold:hover { background:#e6bd5c; color: var(--purple); }
+.sign-card, .card-astro { display:block; background: rgba(255,255,255,.07); border:1px solid rgba(201,184,238,.25); border-radius: 1.2rem; box-shadow: 0 6px 18px rgba(0,0,0,.3); padding: 1.5rem; color: var(--cream); }
+.sign-card { text-align:center; text-decoration:none; transition: transform .2s, border-color .2s; }
+.sign-card:hover, .sign-card.selected { transform: translateY(-4px); border-color: var(--gold); color: var(--cream); }
+.sign-card h3 { margin:.3rem 0 0; font-size:1.4rem; }
+.small-card { padding:.8rem; }
+.symbol { font-size: 2.6rem; color: var(--gold); display:block; line-height:1.2; }
+.symbol.big { font-size: 4.5rem; }
+.score { font-size: 3.5rem; color: var(--gold); }
+.progress { background: rgba(255,255,255,.15); } .progress-bar { background: var(--gold); }
+.form-control,.form-select { border-radius:.7rem; }
+.note { text-align:center; color: var(--lavender); font-size:.9rem; margin-top:1.5rem; }
+.footer-astro { background: rgba(20,10,35,.85); padding: 1.5rem 0; color: var(--lavender); }
+@media (prefers-reduced-motion: reduce) { .sign-card { transition:none; } }

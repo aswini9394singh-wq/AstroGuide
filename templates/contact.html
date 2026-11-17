@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Contact · AstroGuide{% endblock %}
+{% block content %}
+<h1 class="section-title">Contact Us</h1>
+<div class="card-astro mx-auto" style="max-width:640px">
+  {% if errors %}<div class="alert alert-danger"><ul class="mb-0">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul></div>{% endif %}
+  <form method="post" novalidate>
+    <div class="mb-3"><label class="form-label" for="name">Name</label><input class="form-control" id="name" name="name" value="{{ form.name }}" maxlength="100" required></div>
+    <div class="mb-3"><label class="form-label" for="email">Email</label><input type="email" class="form-control" id="email" name="email" value="{{ form.email }}" required></div>
+    <div class="mb-3"><label class="form-label" for="subject">Subject</label><input class="form-control" id="subject" name="subject" value="{{ form.subject }}" maxlength="150" required></div>
+    <div class="mb-3"><label class="form-label" for="message">Message</label><textarea class="form-control" id="message" name="message" rows="5" maxlength="2000" required>{{ form.message }}</textarea></div>
+    <button class="btn btn-gold">Send message</button>
+  </form>
+</div>
+{% endblock %}

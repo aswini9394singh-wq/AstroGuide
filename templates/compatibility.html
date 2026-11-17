@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Compatibility · AstroGuide{% endblock %}
+{% block content %}
+<h1 class="section-title">Compatibility Checker</h1>
+<div class="card-astro mb-4">
+  <form method="post" class="row g-3 align-items-end">
+    {% for n, label, cur in [('sign1','First sign',a),('sign2','Second sign',b)] %}
+    <div class="col-md-4"><label class="form-label" for="{{ n }}">{{ label }}</label>
+      <select class="form-select" id="{{ n }}" name="{{ n }}" required><option value="">Choose...</option>
+        {% for s in signs %}<option value="{{ s.slug }}" {{ 'selected' if cur and cur.slug == s.slug }}>{{ s.symbol }} {{ s.name }}</option>{% endfor %}
+      </select></div>{% endfor %}
+    <div class="col-md-4"><button class="btn btn-gold w-100">Check compatibility</button></div>
+  </form>
+  {% if error %}<div class="alert alert-danger mt-3 mb-0">{{ error }}</div>{% endif %}
+</div>
+{% if result %}
+<div class="card-astro text-center">
+  <h2>{{ a.symbol }} {{ a.name }} &amp; {{ b.symbol }} {{ b.name }}</h2>
+  <div class="score">{{ result.score }}%</div>
+  <div class="progress mb-3"><div class="progress-bar" style="width: {{ result.score }}%"></div></div>
+  <p>{{ result.desc }}</p>
+  <div class="row text-start">
+    <div class="col-md-6"><h4>Strengths</h4><ul>{% for x in result.strengths %}<li>{{ x }}</li>{% endfor %}</ul></div>
+    <div class="col-md-6"><h4>Possible challenges</h4><ul>{% for x in result.challenges %}<li>{{ x }}</li>{% endfor %}</ul></div>
+  </div>
+  <p><strong>Summary:</strong> {{ result.summary }}</p>
+</div>
+<p class="note">Sample data for entertainment only.</p>
+{% endif %}
+{% endblock %}

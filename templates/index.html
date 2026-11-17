@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero text-center">
+  <div class="hero-symbols" aria-hidden="true">♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓</div>
+  <h1>Discover Your Stars</h1>
+  <p class="lead">Astrology is an ancient tradition that links the sky to personality and daily life. Explore the twelve signs, find your own, and see how you match with others, all for fun and reflection.</p>
+  <a class="btn btn-gold btn-lg" href="{{ url_for('zodiac') }}">Explore Zodiac Signs</a>
+</section>
+<h2 class="section-title">The Twelve Signs</h2>
+<div class="row g-4">
+  {% for s in signs %}
+  <div class="col-6 col-md-4 col-lg-3">
+    <a class="sign-card" href="{{ url_for('zodiac_detail', slug=s.slug) }}">
+      <span class="symbol">{{ s.symbol }}</span><h3>{{ s.name }}</h3><small>{{ s.dates }}</small>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+<h2 class="section-title">Today's Horoscope · {{ today.strftime('%d %B %Y') }}</h2>
+<div class="row g-4">
+  {% for s in preview %}
+  <div class="col-md-4"><div class="card-astro h-100">
+    <h3>{{ s.symbol }} {{ s.name }}</h3><p>{{ horoscopes[s.slug] }}</p>
+    <a href="{{ url_for('horoscope', sign=s.slug) }}">Read full horoscope</a>
+  </div></div>
+  {% endfor %}
+</div>
+<p class="note">Sample content for entertainment only, not verified predictions.</p>
+{% endblock %}

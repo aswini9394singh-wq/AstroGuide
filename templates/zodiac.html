@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Zodiac Signs · AstroGuide{% endblock %}
+{% block content %}
+<h1 class="section-title">Find Your Zodiac Sign</h1>
+<div class="card-astro mb-5">
+  <form method="post" class="row g-3 align-items-end" novalidate>
+    <div class="col-md-8"><label for="dob" class="form-label">Date of birth</label>
+      <input type="date" id="dob" name="dob" class="form-control" max="{{ today.isoformat() }}" required></div>
+    <div class="col-md-4"><button class="btn btn-gold w-100">Find my sign</button></div>
+  </form>
+  {% if error %}<div class="alert alert-danger mt-3 mb-0">{{ error }}</div>{% endif %}
+  {% if found %}
+  <div class="result mt-4 text-center">
+    <div class="symbol big">{{ found.symbol }}</div><h2>You are {{ found.name }}</h2>
+    <p>{{ found.dates }} · {{ found.element }} · ruled by {{ found.planet }}</p>
+    <p>{{ found.traits }}</p>
+    <a href="{{ url_for('zodiac_detail', slug=found.slug) }}">See full details</a>
+  </div>{% endif %}
+</div>
+<h2 class="section-title">All Signs</h2>
+<div class="row g-4">
+  {% for s in signs %}
+  <div class="col-6 col-md-4 col-lg-3">
+    <a class="sign-card" href="{{ url_for('zodiac_detail', slug=s.slug) }}">
+      <span class="symbol">{{ s.symbol }}</span><h3>{{ s.name }}</h3><small>{{ s.dates }} · {{ s.element }}</small>
+    </a>
+  </div>{% endfor %}
+</div>
+{% endblock %}

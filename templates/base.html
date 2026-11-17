@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}AstroGuide{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-astro">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('index') }}"><i class="fa-solid fa-star-and-crescent"></i> AstroGuide</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Menu"><i class="fa-solid fa-bars text-white"></i></button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        {% for ep, label in [('index','Home'),('zodiac','Zodiac Signs'),('horoscope','Horoscope'),('compat','Compatibility'),('about','About'),('contact','Contact')] %}
+        <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == ep }}" href="{{ url_for(ep) }}">{{ label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<main class="container py-5">
+  {% with msgs = get_flashed_messages(with_categories=true) %}{% for cat, m in msgs %}
+    <div class="alert alert-{{ cat }}">{{ m }}</div>{% endfor %}{% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="footer-astro">
+  <div class="container text-center">
+    <p class="mb-1"><a href="{{ url_for('zodiac') }}">Zodiac Signs</a> · <a href="{{ url_for('horoscope') }}">Horoscope</a> · <a href="{{ url_for('compat') }}">Compatibility</a> · <a href="{{ url_for('about') }}">About</a> · <a href="{{ url_for('contact') }}">Contact</a></p>
+    <small>© AstroGuide. For entertainment only; astrology is not scientifically proven.</small>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
